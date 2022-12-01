@@ -11,7 +11,7 @@
     "ordination_api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:32825",
+      "applicationUrl": "http://localhost:65161",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
