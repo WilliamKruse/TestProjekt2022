@@ -130,15 +130,21 @@ public class DataService
         return db.Laegemiddler.ToList();
     }
 
-    // MANGLER AT TILFØJE ORDINATIONEN TIL PATIENTEN
+    // VIRKER FINT
     public PN OpretPN(int patientId, int laegemiddelId, double antal, DateTime startDato, DateTime slutDato) {
 
         Patient patient = db.Patienter.Find(patientId);
+       
         Laegemiddel laegemiddel = db.Laegemiddler.Find(laegemiddelId);
         PN pn = new PN(startDato, slutDato, antal, laegemiddel);
         db.Ordinationer.Add(pn);
+        
         db.SaveChanges();
 
+        int pnID = pn.OrdinationId;
+        Ordination temp = db.Ordinationer.Find(pnID);
+        patient.ordinationer.Add(temp);
+        db.SaveChanges();
         return pn;
     }
 
@@ -153,6 +159,11 @@ public class DataService
         db.Ordinationer.Add(dagligFast);
         db.SaveChanges();
 
+        int ID = dagligFast.OrdinationId;
+        Ordination temp = db.Ordinationer.Find(ID);
+        patient.ordinationer.Add(temp);
+        db.SaveChanges();
+
         return dagligFast;
     }
 
@@ -165,6 +176,10 @@ public class DataService
         db.Ordinationer.Add(dagligSkæv);
         db.SaveChanges();
 
+        int ID = dagligSkæv.OrdinationId;
+        Ordination temp = db.Ordinationer.Find(ID);
+        patient.ordinationer.Add(temp);
+        db.SaveChanges();
         return dagligSkæv;
     }
 
