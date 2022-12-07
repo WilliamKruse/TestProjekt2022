@@ -172,7 +172,7 @@ public class DataService
 
         Patient patient = db.Patienter.Find(patientId);
         Laegemiddel laegemiddel = db.Laegemiddler.Find(laegemiddelId);
-        DagligSkæv dagligSkæv = new DagligSkæv(startDato, slutDato, laegemiddel);
+        DagligSkæv dagligSkæv = new DagligSkæv(startDato, slutDato, laegemiddel,doser);
         db.Ordinationer.Add(dagligSkæv);
         db.SaveChanges();
 
@@ -183,14 +183,20 @@ public class DataService
         return dagligSkæv;
     }
 
-    // ER IKKE SIKKER PÅ, AT DETTE VIRKER
+    // Virker fint
     public string AnvendOrdination(int id, Dato dato) {
 
         PN pn = db.PNs.Find(id);
-        pn.givDosis(dato);
-        db.SaveChanges();
+        bool erDosisGivet = pn.givDosis(dato);
+        if (erDosisGivet)
+        {
+            db.SaveChanges();
 
-        return "Ordination anvendt";
+            return "dosis givet";
+        }
+        
+
+        return "Dosis ikke givet";
     }
 
     /// <summary>
