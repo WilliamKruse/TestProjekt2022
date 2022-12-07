@@ -1,9 +1,9 @@
 namespace ordination_test;
-
 using Microsoft.EntityFrameworkCore;
 
 using Service;
 using Data;
+using shared;
 using shared.Model;
 
 [TestClass]
@@ -21,6 +21,7 @@ public class ServiceTest
         service.SeedData();
     }
 
+    
     [TestMethod]
     public void PatientsExist()
     {
@@ -41,6 +42,31 @@ public class ServiceTest
         Assert.AreEqual(2, service.GetDagligFaste().Count());
     }
 
+    
+    //Vores test
+    [TestMethod]
+    public void OpretDagligSkaev()
+    {
+        
+        Patient patient = service.GetPatienter().First();
+        Laegemiddel lm = service.GetLaegemidler().First();
+
+        Assert.AreEqual(1, service.GetDagligSkæve().Count());
+
+        service.OpretDagligSkaev(patient.PatientId, lm.LaegemiddelId,
+            new Dosis[] { 
+                new Dosis(Util.CreateTimeOnly(12, 0, 0), 0.5),
+                new Dosis(Util.CreateTimeOnly(12, 40, 0), 1),
+                new Dosis(Util.CreateTimeOnly(16, 0, 0), 2.5),
+                new Dosis(Util.CreateTimeOnly(18, 45, 0), 3)  
+
+            }, DateTime.Now, DateTime.Now.AddDays(3));
+
+        Assert.AreEqual(2, service.GetDagligSkæve().Count());
+    }
+    
+
+    
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestAtKodenSmiderEnException()
@@ -53,4 +79,7 @@ public class ServiceTest
 
         Console.WriteLine("Her kommer der ikke en exception. Testen fejler.");
     }
+    
+
+    
 }
