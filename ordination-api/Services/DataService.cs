@@ -130,7 +130,7 @@ public class DataService
         return db.Laegemiddler.ToList();
     }
 
-    // VIRKER FINT
+    //Metode vi har lavet
     public PN OpretPN(int patientId, int laegemiddelId, double antal, DateTime startDato, DateTime slutDato) {
 
         Patient patient = db.Patienter.Find(patientId);
@@ -148,7 +148,7 @@ public class DataService
         return pn;
     }
 
-    // MANGLER AT TILFØJE ORDINATIONEN TIL PATIENTEN
+    //Metode vi har lavet
     public DagligFast OpretDagligFast(int patientId, int laegemiddelId, 
         double antalMorgen, double antalMiddag, double antalAften, double antalNat, 
         DateTime startDato, DateTime slutDato) {
@@ -167,7 +167,7 @@ public class DataService
         return dagligFast;
     }
 
-    // MANGLER AT TILFØJE ORDINATIONEN TIL PATIENTEN
+    //Metode vi har lavet
     public DagligSkæv OpretDagligSkaev(int patientId, int laegemiddelId, Dosis[] doser, DateTime startDato, DateTime slutDato) {
 
         Patient patient = db.Patienter.Find(patientId);
@@ -183,7 +183,7 @@ public class DataService
         return dagligSkæv;
     }
 
-    // Virker fint
+    //Metode vi har lavet
     public string AnvendOrdination(int id, Dato dato) {
 
         PN pn = db.PNs.Find(id);
@@ -206,8 +206,8 @@ public class DataService
     /// <param name="patient"></param>
     /// <param name="laegemiddel"></param>
     /// <returns></returns>
- 
-    // ER IKKE SIKKER PÅ, AT DETTE VIRKER
+
+    //Metode vi har lavet
     public double GetAnbefaletDosisPerDøgn(int patientId, int laegemiddelId) {
         Patient patient = db.Patienter.Find(patientId);
         Laegemiddel laegemiddel = db.Laegemiddler.Find(laegemiddelId);
