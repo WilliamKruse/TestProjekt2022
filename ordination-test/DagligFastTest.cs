@@ -39,15 +39,37 @@ public class DagligFastTest
     [TestMethod]
     public void DoegnDosisTestFejl()
     {
-        //Ugyldig - prøver at give minus-dosis.
-        // TC4(virker) - test viser fejl
-        // TC4: TestMinusStyk
+        // Ugyldig - prøver at give minus-dosis.
+        // TC4: TestMinusStykMorgen
         DagligFast tc4 = new DagligFast(new DateTime(2023, 01, 01), new DateTime(2023, 01, 08), new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk"), -1, 1, 1, 1);
 
         double doegnDosis_tc4 = tc4.doegnDosis();
 
         Assert.AreEqual(-1, doegnDosis_tc4);
-        
+
+        // Ugyldig - prøver at give minus-dosis.
+        // TC5: TestMinusStykMiddag
+        DagligFast tc5 = new DagligFast(new DateTime(2023, 01, 01), new DateTime(2023, 01, 08), new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk"), 1, -1, 0, 1);
+
+        double doegnDosis_tc5 = tc5.doegnDosis();
+
+        Assert.AreEqual(-1, doegnDosis_tc5);
+
+        // Ugyldig - prøver at give minus-dosis.
+        // TC6: TestMinusStykAften
+        DagligFast tc6 = new DagligFast(new DateTime(2023, 01, 01), new DateTime(2023, 01, 08), new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk"), 1, 0, -1, 1);
+
+        double doegnDosis_tc6 = tc6.doegnDosis();
+
+        Assert.AreEqual(-1, doegnDosis_tc6);
+
+        // Ugyldig - prøver at give minus-dosis.
+        // TC7: TestMinusStykNat
+        DagligFast tc7 = new DagligFast(new DateTime(2023, 01, 01), new DateTime(2023, 01, 08), new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk"), 1, 1, 0, -1);
+
+        double doegnDosis_tc7 = tc7.doegnDosis();
+
+        Assert.AreEqual(-1, doegnDosis_tc7);
 
     }
 

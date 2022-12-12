@@ -20,6 +20,7 @@ public class DagligSkæv : Ordination {
 	public override double samletDosis() {
 		return base.antalDage() * doegnDosis();
 	}
+
     //Giver det samlede antal taget i løbet at hele perioden, ikke noget med døgn.
 	public override double doegnDosis() {
         double sum = 0;

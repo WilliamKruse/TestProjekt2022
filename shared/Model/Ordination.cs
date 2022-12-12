@@ -20,9 +20,14 @@ public abstract class Ordination {
     /// <summary>
     /// Antal hele dage mellem startdato og slutdato. Begge dage inklusive.
     /// </summary>
-    /// DET HER SKAL FIXES!!!!
     public int antalDage() {
-        int antal = (slutDen.Date - startDen.Date).Days;
+        int antal = -1;
+
+        if(startDen <= slutDen)
+        {
+            antal = (slutDen.Date - startDen.Date).Days + 1;
+        }
+        
         return antal;
     }
 

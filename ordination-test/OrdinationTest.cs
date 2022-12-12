@@ -15,21 +15,21 @@ public class OrdinationTest
 
         int antalDage_tc1 = tc1.antalDage();
 
-        Assert.AreEqual(7, antalDage_tc1);
+        Assert.AreEqual(8, antalDage_tc1);
 
         // TC2: MellemlangOrdinationsPeriode
         PN tc2 = new PN(new DateTime(2023, 01, 01), new DateTime(2023, 02, 01), 123, new Laegemiddel("Paracetamol", 1, 1.5, 2, "Ml"));
 
         int antalDage_tc2 = tc2.antalDage();
 
-        Assert.AreEqual(31, antalDage_tc2);
+        Assert.AreEqual(32, antalDage_tc2);
 
         // TC3: langOrdinationsPeriode
         PN tc3 = new PN(new DateTime(2023, 01, 01), new DateTime(2024, 01, 01), 123, new Laegemiddel("Paracetamol", 1, 1.5, 2, "Ml"));
 
         int antalDage_tc3 = tc3.antalDage();
 
-        Assert.AreEqual(365, antalDage_tc3);
+        Assert.AreEqual(366, antalDage_tc3);
 
 
     }
@@ -44,7 +44,7 @@ public class OrdinationTest
 
         int antalDage_tc4 = tc4.antalDage();
 
-        Assert.AreEqual(1, antalDage_tc4);
+        Assert.AreEqual(-1, antalDage_tc4);
 
 
         // Ugyldig data - slutdato 14 dage før startdato
@@ -53,7 +53,7 @@ public class OrdinationTest
 
         int antalDage_tc5 = tc5.antalDage();
 
-        Assert.AreEqual(14, antalDage_tc5);
+        Assert.AreEqual(-1, antalDage_tc5);
         
 
     }
