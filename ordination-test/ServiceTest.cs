@@ -68,7 +68,7 @@ public class ServiceTest
 
             }, new DateTime(2023, 01, 01), new DateTime(2023, 01,08));
 
-        //nu tjekker man om der er oprettet to list listen - den skulle gerne kører 
+        //nu tjekker man om der er oprettet to list listen - den skulle gerne kører.
         Assert.AreEqual(2, service.GetDagligSkæve().Count());
 
         //TC2: MellemLangOrdinationsPeriode
